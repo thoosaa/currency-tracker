@@ -13,19 +13,19 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
     alias: {
-      "@assets": path.resolve(__dirname, "src/assets"),
-      "@constants": path.resolve(__dirname, "src/constants"),
-      "@components": path.resolve(__dirname, "src/components"),
-      "@pages": path.resolve(__dirname, "src/pages"),
-      "@store": path.resolve(__dirname, "src/store"),
-      "@utils": path.resolve(__dirname, "src/utils"),
+      assets: path.resolve(__dirname, "src/assets/"),
+      components: path.resolve(__dirname, "src/components/"),
+      constants: path.resolve(__dirname, "src/constants/"),
+      pages: path.resolve(__dirname, "src/pages/"),
+      store: path.resolve(__dirname, "src/store/"),
+      utils: path.resolve(__dirname, "src/utils/"),
     },
   },
   module: {
     rules: [
       {
-        test: /\\.(png|jp(e*)g|svg|gif)$/,
-        use: ["file-loader"],
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
       },
       {
         test: /\.(ts|tsx)$/,
@@ -43,7 +43,6 @@ module.exports = {
   devServer: {
     static: {
       directory: path.join(__dirname, "dist"),
-      publicPath: "/assets",
     },
     compress: true,
     port: 3000,
