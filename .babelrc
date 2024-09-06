@@ -1,0 +1,7 @@
+{
+    "presents": [
+        "@babel/present-env",
+        "@babel/present-react",
+        "@babel/present-typescript"
+    ]
+}
