@@ -28,13 +28,6 @@ module.exports = {
         type: "asset/resource",
       },
       {
-        test: /icon\.png$/,
-        type: "asset/resource",
-        generator: {
-          filename: "icon.png",
-        },
-      },
-      {
         test: /\.(ts|tsx)$/,
         use: "ts-loader",
         exclude: /node_modules/,
@@ -45,7 +38,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
-      favicon: "./public/icon.png",
+      favicon: "./public/favicon.ico",
       inject: true,
     }),
   ],

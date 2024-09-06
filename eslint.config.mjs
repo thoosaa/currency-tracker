@@ -1,17 +1,18 @@
-import {fixupConfigRules, fixupPluginRules} from "@eslint/compat";
-import react from "eslint-plugin-react";
-import unusedImports from "eslint-plugin-unused-imports";
-import _import from "eslint-plugin-import";
-import typescriptEslint from "@typescript-eslint/eslint-plugin";
-import jsxA11Y from "eslint-plugin-jsx-a11y";
-import prettier from "eslint-plugin-prettier";
-import simpleImportSort from "eslint-plugin-simple-import-sort";
-import globals from "globals";
-import tsParser from "@typescript-eslint/parser";
 import path from "node:path";
 import {fileURLToPath} from "node:url";
-import js from "@eslint/js";
+
+import {fixupConfigRules, fixupPluginRules} from "@eslint/compat";
 import {FlatCompat} from "@eslint/eslintrc";
+import js from "@eslint/js";
+import typescriptEslint from "@typescript-eslint/eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
+import _import from "eslint-plugin-import";
+import jsxA11Y from "eslint-plugin-jsx-a11y";
+import prettier from "eslint-plugin-prettier";
+import react from "eslint-plugin-react";
+import simpleImportSort from "eslint-plugin-simple-import-sort";
+import unusedImports from "eslint-plugin-unused-imports";
+import globals from "globals";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -45,16 +46,12 @@ export default [
       prettier: fixupPluginRules(prettier),
       "simple-import-sort": simpleImportSort,
     },
-    rules: {
-      "simple-import-sort/imports": "error",
-      "simple-import-sort/exports": "error",
-    },
+
     languageOptions: {
       globals: {
-        ...Object.fromEntries(Object.entries(globals.browser).map(([key]) => [key, "off"])),
+        ...Object.fromEntries(Object.entries(globals.browser).map(([key]) => [key.trim(), "off"])),
         ...globals.node,
       },
-
       parser: tsParser,
       ecmaVersion: 12,
       sourceType: "module",
@@ -85,6 +82,8 @@ export default [
       "unused-imports/no-unused-vars": "off",
       "unused-imports/no-unused-imports": "warn",
       "object-curly-spacing": ["error", "never"],
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error",
 
       "@typescript-eslint/no-unused-vars": [
         "warn",
