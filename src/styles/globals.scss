@@ -157,6 +157,44 @@ input:focus {
 }
 
 html {
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
+}
+
+footer,
+header,
+main {
+  padding: 30px 23px;
+}
+
+@media (min-width: 575.98px) {
+  footer,
+  header,
+  main {
+    padding: 30px calc(50% - 290px);
+  }
+}
+
+@media (min-width: 767.98px) {
+  footer,
+  header,
+  main {
+    padding: 30px calc(50% - 360px);
+  }
+}
+
+@media (min-width: 991.98px) {
+  footer,
+  header,
+  main {
+    padding: 30px calc(50% - 480px);
+  }
+}
+
+@media (min-width: 1371.98px) {
+  footer,
+  header,
+  main {
+    padding: 30px calc(50% - 640px);
+  }
 }
