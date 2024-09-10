@@ -10,7 +10,9 @@ export const Header = () => {
       <MenuList>
         {Object.entries(menu).map(([key, value]) => (
           <li>
-            <a href={value}>{key}</a>
+            <a href={value} key={key}>
+              {key}
+            </a>
           </li>
         ))}
       </MenuList>

@@ -3,6 +3,7 @@ import "styles/globals.scss";
 import {useSelector} from "react-redux";
 import {RootState} from "store/store";
 import {ThemeProvider} from "styled-components";
+import {Footer} from "components/Footer/Footer";
 
 export const App = () => {
   const theme = useSelector((state: RootState) => state.theme);
@@ -11,6 +12,7 @@ export const App = () => {
     <>
       <ThemeProvider theme={theme}>
         <Header />
+        <Footer />
       </ThemeProvider>
     </>
   );
