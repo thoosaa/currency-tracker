@@ -7,6 +7,7 @@ export const Header = () => {
   return (
     <HeaderContainer>
       <img src={green_stocks} alt="Logo" />
+
       <MenuList>
         {Object.entries(menu).map(([key, value]) => (
           <li>
@@ -16,6 +17,7 @@ export const Header = () => {
           </li>
         ))}
       </MenuList>
+
       <SwitchButton />
     </HeaderContainer>
   );

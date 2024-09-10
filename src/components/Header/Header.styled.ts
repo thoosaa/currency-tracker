@@ -12,6 +12,10 @@ export const MenuList = styled.ul`
   display: flex;
   gap: 10px;
 
+  li a:hover {
+    color: ${({theme}) => theme.hovercolor};
+  }
+
   @media (min-width: 575.98px) {
     gap: 45px;
   }
