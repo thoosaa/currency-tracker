@@ -12,4 +12,8 @@ export const HeaderContainer = styled(LayoutContainer)`
 export const MenuList = styled.ul`
   display: flex;
   gap: clamp(10px, 5vw, 100px);
+
+  li a:hover {
+    color: #00ce2c;
+  }
 `;

@@ -23,6 +23,6 @@ export const ListItem = styled.li`
   color: #898989;
 
   a:hover {
-    color: ${({theme}) => theme.hovercolor};
+    color: #00ce2c;
   }
 `;
