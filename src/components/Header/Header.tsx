@@ -1,8 +1,7 @@
 import green_stocks from "assets/images/green-stocks.svg";
+import {menu} from "constants/menu";
 
 import {SwitchButton} from "components/ThemeButton/ThemeButton";
-
-import {menu} from "constants/menu";
 
 import {HeaderContainer, MenuList} from "./Header.styled";
 

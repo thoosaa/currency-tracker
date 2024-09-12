@@ -1,8 +1,9 @@
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {dark} from "components/App/theme";
+
 import {setDarkMode, setLightMode} from "store/actions/actions";
 import {AppDispatch} from "store/store";
+import {dark} from "components/App/theme";
 
 import {CheckBox, Switch, SwitchWrap} from "./ThemeButton.styled";
 

@@ -1,16 +1,18 @@
+import _import from "eslint-plugin-import";
+import jsxA11Y from "eslint-plugin-jsx-a11y";
+import prettier from "eslint-plugin-prettier";
+import react from "eslint-plugin-react";
+import simpleImportSort from "eslint-plugin-simple-import-sort";
+import unusedImports from "eslint-plugin-unused-imports";
+import globals from "globals";
 import path from "node:path";
 import {fileURLToPath} from "node:url";
+
 import {fixupConfigRules, fixupPluginRules} from "@eslint/compat";
 import {FlatCompat} from "@eslint/eslintrc";
 import js from "@eslint/js";
 import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
-import _import from "eslint-plugin-import";
-import jsxA11Y from "eslint-plugin-jsx-a11y";
-import prettier from "eslint-plugin-prettier";
-import react from "eslint-plugin-react";
-import unusedImports from "eslint-plugin-unused-imports";
-import globals from "globals";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,6 +23,9 @@ const compat = new FlatCompat({
 });
 
 export default [
+  {
+    files: ["src/**/*.{ts,tsx,js,jsx,json,css,md}"],
+  },
   {
     ignores: ["node_modules/*", "dist/*"],
   },
@@ -41,6 +46,7 @@ export default [
       "@typescript-eslint": typescriptEslint,
       "jsx-a11y": fixupPluginRules(jsxA11Y),
       prettier: fixupPluginRules(prettier),
+      "simple-import-sort": simpleImportSort,
     },
 
     languageOptions: {
@@ -132,17 +138,12 @@ export default [
           next: ["const", "let", "var"],
         },
       ],
-      "sort-imports": [
+      "simple-import-sort/imports": [
         "error",
         {
-          ignoreCase: true,
-          ignoreDeclarationSort: true,
-          memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
+          groups: [["^\\w"], ["store/*", "components/*"], ["^[./]"]],
         },
       ],
     },
-  },
-  {
-    files: ["src/**/*.{ts,tsx,js,jsx,json,css,md}"],
   },
 ];
