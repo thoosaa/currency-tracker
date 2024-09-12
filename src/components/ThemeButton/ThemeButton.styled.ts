@@ -16,7 +16,7 @@ export const Switch = styled.div`
   border-radius: 20px;
   position: relative;
   transition: background 0.2s;
-  border: 1px solid ${({theme}) => theme.color ?? "#000"};
+  border: 1px solid ${({theme}) => theme.color};
 
   &::after {
     content: "";
@@ -27,7 +27,7 @@ export const Switch = styled.div`
     width: 20px;
     height: 20px;
     transition: left 0.2s;
-    border: 1px solid ${({theme}) => theme.color ?? "#000"};
+    border: 1px solid ${({theme}) => theme.color};
   }
 
   &.checked::after {

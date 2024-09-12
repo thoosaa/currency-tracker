@@ -4,5 +4,5 @@ export const dark = {
 };
 
 export const light = {
-  background: "#fff",
+  background: "#FFFFFF",
 };

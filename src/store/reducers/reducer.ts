@@ -1,6 +1,6 @@
-// reducer.ts
-import {SET_DARK_MODE, SET_LIGHT_MODE, ThemeActionTypes} from "../actions/actions";
 import {dark, light} from "components/App/theme";
+
+import {SET_DARK_MODE, SET_LIGHT_MODE, ThemeActionTypes} from "../actions/actions";
 
 interface ThemeState {
   theme: typeof dark | typeof light;

@@ -1,16 +1,19 @@
 import green_stocks from "assets/images/green-stocks.svg";
+
 import {SwitchButton} from "components/ThemeButton/ThemeButton";
+
 import {menu} from "constants/menu";
+
 import {HeaderContainer, MenuList} from "./Header.styled";
 
 export const Header = () => {
   return (
     <HeaderContainer>
-      <img src={green_stocks} alt="Logo" />
+      <img alt="Logo" src={green_stocks} />
       <MenuList>
         {Object.entries(menu).map(([key, value]) => (
-          <li>
-            <a href={value} key={key}>
+          <li key={key}>
+            <a key={key} href={value}>
               {key}
             </a>
           </li>

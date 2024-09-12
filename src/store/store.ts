@@ -1,4 +1,5 @@
 import {createStore} from "redux";
+
 import themeReducer from "./reducers/reducer";
 
 const store = createStore(themeReducer);
