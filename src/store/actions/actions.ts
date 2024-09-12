@@ -1,20 +1,13 @@
-export const SET_DARK_MODE = "SET_DARK_MODE";
-export const SET_LIGHT_MODE = "SET_LIGHT_MODE";
+export const SET_THEME = "SET_THEME";
 
-interface SetDarkModeAction {
-  type: typeof SET_DARK_MODE;
+interface SetThemeAction {
+  type: typeof SET_THEME;
+  payload: "dark" | "light";
 }
 
-interface SetLightModeAction {
-  type: typeof SET_LIGHT_MODE;
-}
+export type ThemeActionTypes = SetThemeAction;
 
-export type ThemeActionTypes = SetDarkModeAction | SetLightModeAction;
-
-export const setDarkMode = (): SetDarkModeAction => ({
-  type: SET_DARK_MODE,
-});
-
-export const setLightMode = (): SetLightModeAction => ({
-  type: SET_LIGHT_MODE,
+export const setTheme = (mode: "dark" | "light"): SetThemeAction => ({
+  type: SET_THEME,
+  payload: mode,
 });

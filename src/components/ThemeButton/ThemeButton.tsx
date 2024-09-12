@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
-import {setDarkMode, setLightMode} from "store/actions/actions";
+import {setTheme} from "store/actions/actions";
 import {AppDispatch} from "store/store";
 import {dark} from "components/App/theme";
 
@@ -10,13 +10,13 @@ import {CheckBox, Switch, SwitchWrap} from "./ThemeButton.styled";
 export const SwitchButton = () => {
   const dispatch: AppDispatch = useDispatch();
   const theme = useSelector((state: any) => state.theme);
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(theme == dark);
 
   const toggleTheme = () => {
     if (theme === dark) {
-      dispatch(setLightMode());
+      dispatch(setTheme("light"));
     } else {
-      dispatch(setDarkMode());
+      dispatch(setTheme("dark"));
     }
 
     setIsChecked((prev) => !prev);
