@@ -1,3 +1,10 @@
+import _import from "eslint-plugin-import";
+import jsxA11Y from "eslint-plugin-jsx-a11y";
+import prettier from "eslint-plugin-prettier";
+import react from "eslint-plugin-react";
+import simpleImportSort from "eslint-plugin-simple-import-sort";
+import unusedImports from "eslint-plugin-unused-imports";
+import globals from "globals";
 import path from "node:path";
 import {fileURLToPath} from "node:url";
 
@@ -6,13 +13,6 @@ import {FlatCompat} from "@eslint/eslintrc";
 import js from "@eslint/js";
 import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
-import _import from "eslint-plugin-import";
-import jsxA11Y from "eslint-plugin-jsx-a11y";
-import prettier from "eslint-plugin-prettier";
-import react from "eslint-plugin-react";
-import simpleImportSort from "eslint-plugin-simple-import-sort";
-import unusedImports from "eslint-plugin-unused-imports";
-import globals from "globals";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -24,6 +24,9 @@ const compat = new FlatCompat({
 
 export default [
   {
+    files: ["src/**/*.{ts,tsx,js,jsx,json,css,md}"],
+  },
+  {
     ignores: ["node_modules/*", "dist/*"],
   },
   ...fixupConfigRules(
@@ -33,7 +36,6 @@ export default [
       "plugin:react-hooks/recommended",
       "plugin:jsx-a11y/recommended",
       "eslint:recommended",
-      "plugin:prettier/recommended",
     ),
   ),
   {
@@ -51,6 +53,7 @@ export default [
       globals: {
         ...Object.fromEntries(Object.entries(globals.browser).map(([key]) => [key.trim(), "off"])),
         ...globals.node,
+        ...globals.browser,
       },
       parser: tsParser,
       ecmaVersion: 12,
@@ -67,6 +70,20 @@ export default [
       react: {
         version: "detect",
       },
+      "import/resolver": {
+        alias: {
+          map: [
+            ["assets", "./src/assets"],
+            ["components", "./src/components"],
+            ["constants", "./src/constants"],
+            ["pages", "./src/pages"],
+            ["store", "./src/store"],
+            ["styles", "./src/styles"],
+            ["utils", "./src/utils"],
+          ],
+          extensions: [".ts", ".js", ".jsx", ".json"],
+        },
+      },
     },
 
     rules: {
@@ -82,8 +99,6 @@ export default [
       "unused-imports/no-unused-vars": "off",
       "unused-imports/no-unused-imports": "warn",
       "object-curly-spacing": ["error", "never"],
-      "simple-import-sort/imports": "error",
-      "simple-import-sort/exports": "error",
 
       "@typescript-eslint/no-unused-vars": [
         "warn",
@@ -93,33 +108,6 @@ export default [
           argsIgnorePattern: "^_.*?$",
         },
       ],
-
-      "import/order": [
-        "warn",
-        {
-          groups: [
-            "type",
-            "builtin",
-            "object",
-            "external",
-            "internal",
-            "parent",
-            "sibling",
-            "index",
-          ],
-
-          pathGroups: [
-            {
-              pattern: "~/**",
-              group: "external",
-              position: "after",
-            },
-          ],
-
-          "newlines-between": "always",
-        },
-      ],
-
       "react/self-closing-comp": "warn",
 
       "react/jsx-sort-props": [
@@ -148,6 +136,12 @@ export default [
           blankLine: "any",
           prev: ["const", "let", "var"],
           next: ["const", "let", "var"],
+        },
+      ],
+      "simple-import-sort/imports": [
+        "error",
+        {
+          groups: [["^\\w"], ["store/*", "components/*"], ["^[./]"]],
         },
       ],
     },
