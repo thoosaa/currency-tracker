@@ -5,7 +5,7 @@ export const HeaderContainer = styled(LayoutContainer)`
   background-color: ${({theme}) => theme.background};
   color: ${({theme}) => theme.color};
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 `;
 
