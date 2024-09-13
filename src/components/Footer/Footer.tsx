@@ -16,9 +16,9 @@ export const Footer = () => {
         </PictureLogo>
 
         <CompanyDescription>
-          Since then, the company has grown organically to. Starsup is the world&aposs largest
-          trading platform, with $12 billion worth of currency trading and 500,000 tickets sold
-          daily to tens of thousands of traders worldwide.
+          Since then, the company has grown organically to. Starsup is the worlds largest trading
+          platform, with $12 billion worth of currency trading and 500,000 tickets sold daily to
+          tens of thousands of traders worldwide.
         </CompanyDescription>
       </div>
 
