@@ -11,13 +11,8 @@ export const LinkTitle = styled.p`
   font-weight: 400;
 `;
 
-export const LinkList = styled.ul`
-  li {
-    margin-bottom: 20px;
-  }
-`;
-
 export const ListItem = styled.li`
+  margin-bottom: 20px;
   font-size: 24px;
   font-weight: 400;
   color: #898989;

@@ -1,17 +1,18 @@
-import {FooterLinkContainer, LinkList, LinkTitle, ListItem} from "./FooterLink.styled";
+import {FooterLinkContainer, LinkTitle, ListItem} from "./FooterLink.styled";
+import {FooterLinkProps} from "./types";
 
-export const FooterLink = ({title, items}: {title: string; items: string[]}) => {
+export const FooterLink = ({title, items}: FooterLinkProps) => {
   return (
     <FooterLinkContainer>
       <LinkTitle>{title}</LinkTitle>
 
-      <LinkList>
+      <ul>
         {items.map((item) => (
           <ListItem key={item}>
             <a href="/">{item}</a>
           </ListItem>
         ))}
-      </LinkList>
+      </ul>
     </FooterLinkContainer>
   );
 };
