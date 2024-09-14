@@ -1,5 +1,6 @@
-import {LayoutContainer} from "components/Layout/Layout.styled";
 import styled from "styled-components";
+
+import {LayoutContainer} from "components/Layout/Layout.styled";
 
 export const FooterContainer = styled(LayoutContainer)`
   background-color: ${({theme}) => theme.background ?? "#fff"};

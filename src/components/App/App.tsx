@@ -1,9 +1,9 @@
 import {useSelector} from "react-redux";
+import {ThemeProvider} from "styled-components";
 
-import {RootState} from "store/store";
 import {Footer} from "components/Footer/Footer";
 import {Header} from "components/Header/Header";
-import {ThemeProvider} from "styled-components";
+import {RootState} from "store/store";
 
 import "styles/globals.scss";
 

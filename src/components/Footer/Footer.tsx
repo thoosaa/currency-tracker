@@ -1,8 +1,7 @@
 import green_stocks from "assets/images/green-stocks.svg";
 import logo_text from "assets/images/logo_text.svg";
-import {footerlinks} from "constants/footerlinks";
-
 import {FooterLink} from "components/FooterLink/FooterLink";
+import {footerlinks} from "constants/footerlinks";
 
 import {CompanyDescription, FooterContainer, FooterLinks, PictureLogo} from "./Footer.styled";
 
