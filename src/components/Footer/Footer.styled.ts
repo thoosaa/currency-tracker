@@ -3,8 +3,8 @@ import styled from "styled-components";
 import {LayoutContainer} from "components/Layout/Layout.styled";
 
 export const FooterContainer = styled(LayoutContainer)`
-  background-color: ${({theme}) => theme.background ?? "#fff"};
-  color: ${({theme}) => theme.color ?? "#000"};
+  background-color: ${({theme}) => theme.background};
+  color: ${({theme}) => theme.color};
   display: flex;
   gap: 105px;
 
