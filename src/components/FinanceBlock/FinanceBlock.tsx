@@ -5,12 +5,7 @@ import {
   StockInfo,
   Title,
 } from "./FinanceBlock.styled";
-
-interface FinanceBlockProps {
-  imageUrl: string;
-  title: string;
-  percentInfo: string;
-}
+import {FinanceBlockProps} from "./types";
 
 export const FinanceBlock = (stockInfo: FinanceBlockProps) => {
   return (

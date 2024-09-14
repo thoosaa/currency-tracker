@@ -17,7 +17,6 @@ export const SectionTitle = styled.h2`
     bottom: -25px;
     left: 0;
     width: clamp(300px, 100%, 520px);
-
     border-bottom: 2px solid #474747;
   }
 `;

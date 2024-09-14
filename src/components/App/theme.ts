@@ -1,14 +1,14 @@
 export const dark = {
   background: "#030304",
-  color: "#FFFFFF",
-  finance_block_bgcolor: "#202025",
-  finance_block_title: "#D9D9D9",
-  finance_block_percent: "#A7B2C3",
+  color: "#ffffff",
+  financeBlockBgColor: "#202025",
+  financeBlockTitle: "#d9d9d9",
+  financeBlockPercent: "#a7b2c3",
 };
 
 export const light = {
-  background: "#FFFFFF",
-  finance_block_bgcolor: "#EDEDED",
-  finance_block_title: "#363636",
-  finance_block_percent: "#5A5F69",
+  background: "#ffffff",
+  financeBlockBgColor: "#ededed",
+  financeBlockTitle: "#363636",
+  financeBlockPercent: "#5a5f69",
 };

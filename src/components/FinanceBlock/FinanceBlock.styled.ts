@@ -5,7 +5,7 @@ export const FinanceBlockContainer = styled.div`
   align-items: center;
   gap: 30px;
   padding: 36.5px 32px;
-  background-color: ${({theme}) => theme.finance_block_bgcolor};
+  background-color: ${({theme}) => theme.financeBlockBgColor};
   border-radius: 8px;
 `;
 
@@ -30,11 +30,11 @@ export const StockInfo = styled.div`
 export const Title = styled.p`
   font-weight: 400;
   font-size: 35px;
-  color: ${({theme}) => theme.finance_block_title};
+  color: ${({theme}) => theme.financeBlockTitle};
 `;
 
 export const PercentInfo = styled.p`
   font-weight: 300;
   font-size: 32px;
-  color: ${({theme}) => theme.finance_block_percent};
+  color: ${({theme}) => theme.financeBlockPercent};
 `;
