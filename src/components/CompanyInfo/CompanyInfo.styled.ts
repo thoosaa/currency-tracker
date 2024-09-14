@@ -6,13 +6,18 @@ export const Container = styled.div`
 `;
 export const InfoSection = styled(LayoutContainer)`
   display: flex;
-  background: rgb(36, 121, 64);
-  background: linear-gradient(
-    77deg,
-    rgba(36, 121, 64, 0) 0%,
-    ${({theme}) => theme.gradient_color} 100%
-  );
+  background: #247940;
+  background: linear-gradient(77deg, #24794000 0%, ${({theme}) => theme.gradientColor} 100%);
   gap: 80px;
+
+  @media (max-width: 991.98px) {
+    img {
+      display: none;
+    }
+
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const Title = styled.h1`
@@ -23,13 +28,18 @@ export const Title = styled.h1`
   font-size: 90.36px;
   font-weight: 600;
   text-align: right;
+
+  @media (max-width: 991.98px) {
+    text-align: center;
+  }
 `;
+
 export const TextContainer = styled.div`
   flex: 0.5 0.5 50%;
 `;
 
 export const TextInfo = styled.p`
-  color: ${({theme}) => theme.color ?? "#000"};
+  color: ${({theme}) => theme.color};
   font-size: 25px;
   font-weight: 300;
   line-height: 46.77px;
@@ -39,5 +49,9 @@ export const TextInfo = styled.p`
   span:after {
     content: "";
     display: block;
+  }
+
+  @media (max-width: 991.98px) {
+    text-align: center;
   }
 `;
