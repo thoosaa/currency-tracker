@@ -1,1 +1,6 @@
-export const menu: Record<string, string> = {Home: "#", Timeline: "#", Card: "#", Contact: "#"};
+export const menu: Record<string, string> = {
+  Home: "/",
+  Timeline: "#",
+  Card: "#",
+  Contact: "/contact",
+};
