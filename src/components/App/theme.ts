@@ -1,8 +1,8 @@
 export const dark = {
   background: "#030304",
-  color: "#FFFFFF",
+  color: "#ffffff",
 };
 
 export const light = {
-  background: "#FFFFFF",
+  background: "#ffffff",
 };
