@@ -1,8 +1,9 @@
 import {useSelector} from "react-redux";
-
-import {RootState} from "store/store";
-import {Header} from "components/Header/Header";
 import {ThemeProvider} from "styled-components";
+
+import {Footer} from "components/Footer/Footer";
+import {Header} from "components/Header/Header";
+import {RootState} from "store/store";
 
 import "styles/globals.scss";
 
@@ -12,6 +13,7 @@ export const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Header />
+      <Footer />
     </ThemeProvider>
   );
 };
