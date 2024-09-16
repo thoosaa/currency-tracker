@@ -141,7 +141,19 @@ export default [
       "simple-import-sort/imports": [
         "error",
         {
-          groups: [["^\\w"], ["store/*", "components/*"], ["^[./]"]],
+          groups: [
+            ["^\\w"],
+            [
+              "^assets/*",
+              "^components/*",
+              "^constants/*",
+              "^pages/*",
+              "^store/*",
+              "^styles/*",
+              "^utils/*",
+            ],
+            ["^[./]"],
+          ],
         },
       ],
     },
