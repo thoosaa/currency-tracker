@@ -4,6 +4,7 @@ export const dark = {
   financeBlockBgColor: "#202025",
   financeBlockTitle: "#d9d9d9",
   financeBlockPercent: "#a7b2c3",
+  gradientColor: "#121212",
 };
 
 export const light = {
@@ -11,4 +12,5 @@ export const light = {
   financeBlockBgColor: "#ededed",
   financeBlockTitle: "#363636",
   financeBlockPercent: "#5a5f69",
+  gradientColor: "#e3e1e1",
 };
