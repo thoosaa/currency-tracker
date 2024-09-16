@@ -1,6 +1,5 @@
 import arrowUp from "assets/images/arrowup.svg";
 import house from "assets/images/house.svg";
-
 import {FinanceBlock} from "components/FinanceBlock/FinanceBlock";
 
 import {StockList} from "./Stock.styled";

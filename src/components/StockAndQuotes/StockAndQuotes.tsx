@@ -1,3 +1,4 @@
+import {Quote} from "components/Quote/Quote";
 import {Stock} from "components/Stock/Stock";
 
 import {SectionContainer, SectionTitle} from "./StockAndQuotes.styled";
@@ -9,6 +10,7 @@ export const StockAndQuotes = () => {
       <Stock />
 
       <SectionTitle>Quotes</SectionTitle>
+      <Quote />
     </SectionContainer>
   );
 };
