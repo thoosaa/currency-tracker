@@ -1,18 +1,7 @@
-import styled from "styled-components";
-
-import arrowUp from "assets/images/arrowup.svg";
 import {FinanceBlock} from "components/FinanceBlock/FinanceBlock";
 
+import {QuoteList} from "./Quotes.styled";
 import {useQuotes} from "./useQuote";
-
-const QuoteList = styled.div`
-  margin-top: 77px;
-  margin-bottom: 86px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 520px));
-  grid-row-gap: 56px;
-  justify-content: space-between;
-`;
 
 export const Quote = () => {
   const {quotes, isLoading, error} = useQuotes();
@@ -28,10 +17,11 @@ export const Quote = () => {
     <QuoteList>
       {quotes.map((currency: any) => (
         <FinanceBlock
-          key={currency.asset_id}
-          imageUrl={arrowUp}
-          percentInfo={currency.price_usd}
-          title={"Bovespa Index"}
+          key={currency.name}
+          background={currency.background}
+          imageUrl={currency.icon}
+          percentInfo={`R$ ${currency.rate.toFixed(2)}`}
+          title={currency.name}
         />
       ))}
     </QuoteList>
