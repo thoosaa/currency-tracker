@@ -1,4 +1,4 @@
-export const menu: Record<string, string> = {
+export const menu = {
   Home: "/",
   Timeline: "#",
   Card: "#",
