@@ -1,7 +1,7 @@
 import axios from "axios";
 import {useCallback, useEffect, useState} from "react";
 
-import {API_KEY, BASE_URL} from "constants/apiroutes";
+import {API_KEY_QUOTE, BASE_URL} from "constants/apiroutes";
 import {currencies} from "constants/currencies";
 import {getErrorMessage} from "utils/getErrorMsg";
 
@@ -15,7 +15,7 @@ export function useQuotes() {
   const fetchQuotes = useCallback(async () => {
     try {
       const res = await axios.get(`${BASE_URL}/exchangerate/USD`, {
-        headers: {"X-CoinAPI-Key": API_KEY},
+        headers: {"X-CoinAPI-Key": API_KEY_QUOTE},
       });
 
       const rates = res.data.rates.filter((rate: any) =>
