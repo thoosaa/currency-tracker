@@ -4,6 +4,9 @@ import {ThemeProvider} from "styled-components";
 
 import {AppRouting} from "components/AppRouting/AppRouting";
 import {Fallback} from "components/Fallback/Fallback";
+import {CompanyInfo} from "components/CompanyInfo/CompanyInfo";
+import {Header} from "components/Header/Header";
+import {Footer} from "components/Footer/Footer";
 import {RootState} from "store/store";
 
 import "styles/globals.scss";
