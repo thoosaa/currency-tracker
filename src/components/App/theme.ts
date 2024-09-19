@@ -1,6 +1,7 @@
 export const dark = {
   background: "#030304",
   color: "#ffffff",
+  logoStyle: "invert(100%)",
   financeBlockBgColor: "#202025",
   financeBlockTitle: "#d9d9d9",
   financeBlockPercent: "#a7b2c3",
@@ -9,6 +10,7 @@ export const dark = {
 
 export const light = {
   background: "#ffffff",
+  logoStyle: "invert(0%)",
   financeBlockBgColor: "#ededed",
   financeBlockTitle: "#363636",
   financeBlockPercent: "#5a5f69",
