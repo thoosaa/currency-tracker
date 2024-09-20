@@ -1,1 +1,7 @@
-export const menu = {Home: "#", Timeline: "#", Card: "#", Contact: "#"};
+
+export const menu = {
+  Home: "/",
+  Timeline: "#",
+  Card: "#",
+  Contact: "/contact",
+};
