@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StockList = styled.div`
+export const QuoteList = styled.div`
   margin-top: 77px;
   margin-bottom: 86px;
   display: grid;

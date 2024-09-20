@@ -7,6 +7,7 @@ export const FooterContainer = styled(LayoutContainer)`
   color: ${({theme}) => theme.color};
   display: flex;
   gap: 105px;
+  margin-bottom: 54px;
 
   @media (max-width: 1050px) {
     flex-direction: column;
