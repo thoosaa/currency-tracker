@@ -3,14 +3,13 @@ import {useCallback, useEffect, useState} from "react";
 
 import {API_KEY_QUOTE, BASE_URL} from "constants/apiroutes";
 import {currencies} from "constants/currencies";
-import {getErrorMessage} from "utils/getErrorMsg";
 
 import {Quote} from "./types";
 
 export function useQuotes() {
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<boolean>(false);
 
   const fetchQuotes = useCallback(async () => {
     try {
@@ -18,22 +17,21 @@ export function useQuotes() {
         headers: {"X-CoinAPI-Key": API_KEY_QUOTE},
       });
 
-      const rates = res.data.rates.filter((rate: any) =>
-        currencies.some((currency) => currency.name === rate.asset_id_quote),
-      );
-
       const combinedData = currencies.map((currency) => {
-        const currencyRate = rates.find((rate: any) => rate.asset_id_quote === currency.name);
+        const {rate} =
+          res.data.rates.find(
+            ({asset_id_quote}: {asset_id_quote: string}) => asset_id_quote === currency.name,
+          ) || {};
 
         return {
           ...currency,
-          rate: currencyRate ? currencyRate.rate : 1.0,
+          rate: rate ? rate : 1.0,
         };
       });
 
       setQuotes(combinedData);
-    } catch (error) {
-      setError(getErrorMessage(error));
+    } catch {
+      setError(true);
     } finally {
       setIsLoading(false);
     }

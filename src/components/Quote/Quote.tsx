@@ -10,18 +10,18 @@ export const Quote = () => {
     return <h1>Loading</h1>;
   }
   if (error) {
-    return <h1>Error {error}</h1>;
+    return <h1>Oops... Something went wrong</h1>;
   }
 
   return (
     <QuoteList>
-      {quotes.map((currency: any) => (
+      {quotes.map(({name, background, icon, rate}) => (
         <FinanceBlock
-          key={currency.name}
-          background={currency.background}
-          imageUrl={currency.icon}
-          percentInfo={`R$ ${currency.rate.toFixed(2)}`}
-          title={currency.name}
+          key={name}
+          background={background}
+          imageUrl={icon}
+          percentInfo={`R$ ${rate.toFixed(2)}`}
+          title={name}
         />
       ))}
     </QuoteList>
