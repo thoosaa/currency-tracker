@@ -3,6 +3,7 @@ import L from "leaflet";
 import {Component} from "react";
 import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 
+import {Layout} from "components/Layout/Layout";
 import {currency} from "constants/currency";
 
 import {Bank, MapState} from "./types";
@@ -57,20 +58,22 @@ class Map extends Component<{}, MapState> {
 
   render() {
     return (
-      <MapContainer
-        center={[53.9, 27.5667]}
-        scrollWheelZoom={false}
-        style={{height: "100vh", width: "100%"}}
-        zoom={13}
-      >
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <Layout>
+        <MapContainer
+          center={[53.9, 27.5667]}
+          scrollWheelZoom={false}
+          style={{height: "80vh", width: "100%"}}
+          zoom={13}
+        >
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-        {this.state.bankList.map(({fsq_id, geocodes, name}) => (
-          <Marker key={fsq_id} position={[geocodes.main.latitude, geocodes.main.longitude]}>
-            <Popup>{name}</Popup>
-          </Marker>
-        ))}
-      </MapContainer>
+          {this.state.bankList.map(({fsq_id, geocodes, name}) => (
+            <Marker key={fsq_id} position={[geocodes.main.latitude, geocodes.main.longitude]}>
+              <Popup>{name}</Popup>
+            </Marker>
+          ))}
+        </MapContainer>
+      </Layout>
     );
   }
 }
