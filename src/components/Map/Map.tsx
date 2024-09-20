@@ -1,6 +1,9 @@
+import axios from "axios";
 import L from "leaflet";
-import {MapContainer, Marker, Popup} from "react-leaflet";
-import {TileLayer} from "react-leaflet";
+import {Component} from "react";
+import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
+
+import {MapState} from "./types";
 
 import "leaflet/dist/leaflet.css";
 
@@ -10,24 +13,56 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
 });
 
-export const Map = () => {
-  return (
-    <MapContainer
-      center={[53.9, 27.5667]}
-      scrollWheelZoom={false}
-      style={{height: "100vh", width: "100%"}}
-      zoom={13}
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+class Map extends Component<{}, MapState> {
+  state: MapState = {
+    bankList: [],
+    isLoading: true,
+    error: false,
+  };
 
-      <Marker position={[53.9, 27.5667]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-    </MapContainer>
-  );
-};
+  fetchBankList = async () => {
+    try {
+      const res = await axios.get("https://api.foursquare.com/v3/places/search", {
+        headers: {Authorization: "fsq3diKK2zilL3ubXZU3OORI3zBxVU6G/sSCC8wvlNxaxw4="},
+        params: {
+          ll: "53.90,27.57",
+          categories: 11045,
+          fields: "fsq_id,name,geocodes",
+          open_now: true,
+          limit: 50,
+        },
+      });
+
+      this.setState({bankList: res.data.results});
+    } catch {
+      this.setState({error: true});
+    } finally {
+      this.setState({isLoading: false});
+    }
+  };
+
+  componentDidMount() {
+    this.fetchBankList();
+  }
+
+  render() {
+    return (
+      <MapContainer
+        center={[53.9, 27.5667]}
+        scrollWheelZoom={false}
+        style={{height: "100vh", width: "100%"}}
+        zoom={13}
+      >
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
+        {this.state.bankList.map(({fsq_id, geocodes, name}) => (
+          <Marker key={fsq_id} position={[geocodes.main.latitude, geocodes.main.longitude]}>
+            <Popup>{name}</Popup>
+          </Marker>
+        ))}
+      </MapContainer>
+    );
+  }
+}
+
+export default Map;
