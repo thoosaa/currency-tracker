@@ -3,7 +3,9 @@ import L from "leaflet";
 import {Component} from "react";
 import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 
-import {MapState} from "./types";
+import {currency} from "constants/currency";
+
+import {Bank, MapState} from "./types";
 
 import "leaflet/dist/leaflet.css";
 
@@ -32,6 +34,14 @@ class Map extends Component<{}, MapState> {
           limit: 50,
         },
       });
+
+      const bankList = res.data.results;
+
+      bankList.map((bank: Bank, i: number) => {
+        bank.currency = currency.slice(-i % currency.length);
+      });
+
+      console.log(bankList);
 
       this.setState({bankList: res.data.results});
     } catch {
