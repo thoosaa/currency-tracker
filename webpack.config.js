@@ -2,6 +2,7 @@ const path = require("path");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -46,6 +47,7 @@ module.exports = {
       favicon: "./public/favicon.ico",
       inject: true,
     }),
+    new Dotenv(),
   ],
   devServer: {
     static: {
