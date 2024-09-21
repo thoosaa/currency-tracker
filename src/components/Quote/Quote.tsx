@@ -1,4 +1,5 @@
 import {FinanceBlock} from "components/FinanceBlock/FinanceBlock";
+import {QuoteModal} from "components/QuoteModal/QuoteModal";
 
 import {QuoteList} from "./Quotes.styled";
 import {useQuotes} from "./useQuote";
@@ -14,16 +15,19 @@ export const Quote = () => {
   }
 
   return (
-    <QuoteList>
-      {quotes.map(({name, background, icon, rate}) => (
-        <FinanceBlock
-          key={name}
-          background={background}
-          imageUrl={icon}
-          percentInfo={`R$ ${rate.toFixed(2)}`}
-          title={name}
-        />
-      ))}
-    </QuoteList>
+    <>
+      <QuoteList>
+        {quotes.map(({name, fullName, background, icon, rate}) => (
+          <FinanceBlock
+            key={name}
+            background={background}
+            imageUrl={icon}
+            percentInfo={`R$ ${rate.toFixed(2)}`}
+            title={fullName}
+          />
+        ))}
+      </QuoteList>
+      <QuoteModal />
+    </>
   );
 };
