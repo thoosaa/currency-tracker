@@ -23,9 +23,7 @@ export function useQuotes() {
         currencyRates = res.data.rates;
 
         currencies.forEach(({name}: {name: string}) => {
-          const rateInfo = currencyRates?.find(
-            ({asset_id_quote}: {asset_id_quote: string}) => asset_id_quote === name,
-          );
+          const rateInfo = currencyRates?.find(({asset_id_quote}) => asset_id_quote === name);
 
           if (rateInfo) {
             localStorage.setItem(rateInfo.asset_id_quote, rateInfo.rate.toString());
@@ -49,9 +47,7 @@ export function useQuotes() {
 
     const combinedData = currencies.map((currency) => {
       const {rate} =
-        currencyRates.find(
-          ({asset_id_quote}: {asset_id_quote: string}) => asset_id_quote === currency.name,
-        ) || {};
+        currencyRates.find(({asset_id_quote}) => asset_id_quote === currency.name) || {};
 
       return {
         ...currency,
