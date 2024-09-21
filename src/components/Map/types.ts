@@ -12,6 +12,11 @@ export type Bank = {
 
 export type MapState = {
   bankList: Bank[];
+  paramBankList: Bank[];
   isLoading: boolean;
   error: boolean;
+};
+
+export type MapProps = {
+  searchQuery: string;
 };

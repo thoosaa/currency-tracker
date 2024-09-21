@@ -40,7 +40,6 @@ export const Input = styled.input`
   padding: 10px 20px;
   background: ${({theme}) => theme.searchBg};
   color: ${({theme}) => theme.inputColor};
-
   border: none;
   font-size: 18px;
 

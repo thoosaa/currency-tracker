@@ -4,10 +4,10 @@ import search from "assets/images/search.svg";
 import {currency} from "constants/currency";
 
 import {Input, Option, OptionsBlock, SearchContainer} from "./Search.styled";
-import {SearchState} from "./types";
+import {SearchProps, SearchState} from "./types";
 
-class Search extends Component<{}, SearchState> {
-  constructor(props: {}) {
+class Search extends Component<SearchProps, SearchState> {
+  constructor(props: SearchProps) {
     super(props);
     this.state = {
       value: "",
@@ -24,10 +24,12 @@ class Search extends Component<{}, SearchState> {
         : [];
 
     this.setState({value, suggestions});
+    this.props.setSearch(value);
   };
 
   onSelect = (currency: string) => {
     this.setState({value: currency, suggestions: []});
+    this.props.setSearch(currency);
   };
 
   render() {
