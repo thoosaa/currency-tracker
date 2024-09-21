@@ -21,7 +21,6 @@ export function useQuotes() {
         });
 
         currencyRates = res.data.rates;
-        console.log(currencyRates);
 
         currencies.forEach(({name}: {name: string}) => {
           const rateInfo = currencyRates?.find(
