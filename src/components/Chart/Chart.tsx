@@ -12,10 +12,15 @@ import {CandlestickChartState, Trade, TradeApi} from "./types";
 import "chartjs-chart-financial";
 import "chartjs-adapter-date-fns";
 
-class CandlestickChart extends Component<{}, CandlestickChartState> {
+type CandlestickChartProps = {
+  fromDate: string;
+  toDate: string;
+};
+
+class CandlestickChart extends Component<CandlestickChartProps, CandlestickChartState> {
   observer = new Observer();
 
-  constructor(props: {}) {
+  constructor(props: CandlestickChartProps) {
     super(props);
     this.state = {
       history: [],
@@ -30,9 +35,16 @@ class CandlestickChart extends Component<{}, CandlestickChartState> {
     this.observer.subscribe(() => alert("Chart updated"));
   }
 
-  componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<CandlestickChartState>) {
+  componentDidUpdate(
+    prevProps: Readonly<CandlestickChartProps>,
+    prevState: Readonly<CandlestickChartState>,
+  ) {
     if (prevState.history !== this.state.history) {
       this.observer.notify();
+    }
+
+    if (prevProps.fromDate !== this.props.fromDate || prevProps.toDate !== this.props.toDate) {
+      this.fetchData();
     }
   }
 
@@ -46,8 +58,8 @@ class CandlestickChart extends Component<{}, CandlestickChartState> {
           },
           params: {
             period_id: "1DAY",
-            time_start: "2024-08-01T00:00:00",
-            time_end: "2024-08-21T00:00:00",
+            time_start: `${this.props.fromDate}T00:00:00`,
+            time_end: `${this.props.toDate}T00:00:00`,
           },
         },
       );
