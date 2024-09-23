@@ -4,6 +4,7 @@ import React, {Component} from "react";
 import {Chart} from "react-chartjs-2";
 
 import ChartModal from "components/ChartModal/ChartModal";
+import {Observer} from "utils/Observer";
 
 import {options} from "./chartconfig";
 import {CandlestickChartState, Trade, TradeApi} from "./types";
@@ -12,6 +13,8 @@ import "chartjs-chart-financial";
 import "chartjs-adapter-date-fns";
 
 class CandlestickChart extends Component<{}, CandlestickChartState> {
+  observer = new Observer();
+
   constructor(props: {}) {
     super(props);
     this.state = {
@@ -23,6 +26,14 @@ class CandlestickChart extends Component<{}, CandlestickChartState> {
 
   componentDidMount() {
     this.fetchData();
+
+    this.observer.subscribe(() => alert("Chart updated"));
+  }
+
+  componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<CandlestickChartState>) {
+    if (prevState.history !== this.state.history) {
+      this.observer.notify();
+    }
   }
 
   fetchData = async () => {
