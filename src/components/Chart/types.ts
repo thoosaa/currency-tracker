@@ -17,4 +17,6 @@ export type TradeApi = {
 export type CandlestickChartState = {
   history: Trade[];
   currentTrade?: Trade;
+  currentTradeIndex?: number;
+  isOpen?: boolean;
 };

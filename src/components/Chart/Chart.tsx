@@ -6,7 +6,7 @@ import {Chart} from "react-chartjs-2";
 import ChartModal from "components/ChartModal/ChartModal";
 
 import {options} from "./chartconfig";
-import {CandlestickChartState, TradeApi} from "./types";
+import {CandlestickChartState, Trade, TradeApi} from "./types";
 
 import "chartjs-chart-financial";
 import "chartjs-adapter-date-fns";
@@ -17,6 +17,7 @@ class CandlestickChart extends Component<{}, CandlestickChartState> {
     this.state = {
       history: [],
       currentTrade: undefined,
+      isOpen: false,
     };
   }
 
@@ -30,7 +31,7 @@ class CandlestickChart extends Component<{}, CandlestickChartState> {
         "https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/history",
         {
           headers: {
-            "X-CoinAPI-Key": process.env.REACT_API_KEY,
+            "X-CoinAPI-Key": "E5CFB881-BDAD-42DD-9F82-39607D10D700",
           },
           params: {
             period_id: "1DAY",
@@ -73,11 +74,34 @@ class CandlestickChart extends Component<{}, CandlestickChartState> {
 
     if (points.length) {
       const firstPoint = points[0];
-      const datasetIndex = firstPoint.datasetIndex;
+      const datasetIndex = firstPoint.index;
 
+      console.log(points);
       console.log(this.state.history[datasetIndex]);
-      this.setState({currentTrade: this.state.history[datasetIndex]});
+
+      this.setState({
+        currentTrade: this.state.history[datasetIndex],
+        currentTradeIndex: datasetIndex,
+        isOpen: true,
+      });
     }
+  };
+
+  handleSubmit = (updatedTrade: Trade) => {
+    const {history, currentTradeIndex} = this.state;
+
+    const updatedHistory = [...history];
+
+    if (currentTradeIndex) updatedHistory[currentTradeIndex] = updatedTrade;
+
+    this.setState({
+      history: updatedHistory,
+      isOpen: false,
+    });
+  };
+
+  handleClose = () => {
+    this.setState({isOpen: false});
   };
 
   render() {
@@ -97,7 +121,13 @@ class CandlestickChart extends Component<{}, CandlestickChartState> {
     return (
       <>
         <Chart data={data} options={options} type="candlestick" onClick={this.handleClick} />
-        {currentTrade && <ChartModal trade={currentTrade} />}
+        {this.state.isOpen && currentTrade && (
+          <ChartModal
+            handleClose={this.handleClose}
+            trade={currentTrade}
+            onSubmit={this.handleSubmit}
+          />
+        )}
       </>
     );
   }

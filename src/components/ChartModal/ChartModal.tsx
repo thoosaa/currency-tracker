@@ -1,4 +1,4 @@
-import {Component} from "react";
+import {ChangeEvent, Component, FormEvent} from "react";
 import styled from "styled-components";
 
 import {ChartModalProps} from "./types";
@@ -10,6 +10,10 @@ const ModalContainer = styled.div`
   border-radius: 8px;
   color: ${({theme}) => theme.financeBlockTitle};
   font-size: 35px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 const ModalHeader = styled.div`
   display: flex;
@@ -56,34 +60,72 @@ const Button = styled.button`
   }
 `;
 
-class ChartModal extends Component<ChartModalProps> {
+type ChartModalState = {
+  open: number;
+  close: number;
+  high: number;
+  low: number;
+};
+
+class ChartModal extends Component<ChartModalProps, ChartModalState> {
   constructor(props: ChartModalProps) {
     super(props);
+
+    this.state = {
+      open: props.trade.o,
+      close: props.trade.c,
+      high: props.trade.h,
+      low: props.trade.l,
+    };
   }
 
+  handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = event.target;
+
+    this.setState({
+      [name]: value,
+    } as unknown as ChartModalState);
+  };
+
+  handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+
+    const updatedTrade = {
+      x: this.props.trade.x,
+      o: this.state.open,
+      c: this.state.close,
+      h: this.state.high,
+      l: this.state.low,
+    };
+
+    this.props.onSubmit(updatedTrade);
+  };
+
   render() {
+    const {open, close, high, low} = this.state;
+
     return (
       <ModalContainer>
         <ModalHeader>
           <Title>{this.props.trade.x.toDateString()}</Title>
-          <button>x</button>
+          <button onClick={this.props.handleClose}>x</button>
         </ModalHeader>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <TextBlock>
             <Text>Open </Text>
-            <Input type="number" value={this.props.trade.o} />
+            <Input name="open" type="number" value={open} onChange={this.handleChange} />
           </TextBlock>
           <TextBlock>
             <Text>Close </Text>
-            <Input type="number" value={this.props.trade.c} />
+            <Input name="close" type="number" value={close} onChange={this.handleChange} />
           </TextBlock>
           <TextBlock>
             <Text>High </Text>
-            <Input type="number" value={this.props.trade.h} />
+            <Input name="high" type="number" value={high} onChange={this.handleChange} />
           </TextBlock>
           <TextBlock>
             <Text>Low </Text>
-            <Input type="number" value={this.props.trade.l} />
+            <Input name="low" type="number" value={low} onChange={this.handleChange} />
           </TextBlock>
 
           <Button type="submit">
