@@ -29,7 +29,6 @@ export function useQuotes() {
         });
 
         currencyRates = res.data.rates;
-        console.log(currencyRates);
 
         currencies.forEach(({name}: {name: string}) => {
           const rateInfo = currencyRates?.find(({asset_id_quote}) => asset_id_quote === name);
@@ -55,8 +54,6 @@ export function useQuotes() {
 
       setIsLoading(false);
     }
-
-    console.log(currencies);
 
     const combinedData = currencies.map((currency) => {
       const {rate} =
