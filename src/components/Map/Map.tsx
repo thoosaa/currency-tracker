@@ -1,20 +1,24 @@
 import axios from "axios";
 import L from "leaflet";
+import iconUrl from "leaflet/dist/images/marker-icon.png";
+import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
+import shadowUrl from "leaflet/dist/images/marker-shadow.png";
 import {Component} from "react";
 import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 
 import {Layout} from "components/Layout/Layout";
 import {currency} from "constants/currency";
-import {BANK_CATEGORY_CODE, LATITUDE, LONGTITUDE} from "constants/map";
+import {LATITUDE, LONGTITUDE, MAP_LINK} from "constants/map";
 
+import {params} from "./params";
 import {Bank, MapProps, MapState} from "./types";
 
 import "leaflet/dist/leaflet.css";
 
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-  iconUrl: require("leaflet/dist/images/marker-icon.png"),
-  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+  iconRetinaUrl: iconRetinaUrl,
+  iconUrl: iconUrl,
+  shadowUrl: shadowUrl,
 });
 
 class Map extends Component<MapProps, MapState> {
@@ -32,13 +36,7 @@ class Map extends Component<MapProps, MapState> {
     try {
       const res = await axios.get("https://api.foursquare.com/v3/places/search", {
         headers: {Authorization: "fsq3diKK2zilL3ubXZU3OORI3zBxVU6G/sSCC8wvlNxaxw4="},
-        params: {
-          ll: `${LATITUDE},${LONGTITUDE}`,
-          categories: BANK_CATEGORY_CODE,
-          fields: "fsq_id,name,geocodes",
-          open_now: true,
-          limit: 50,
-        },
+        params: params,
       });
 
       const bankList = res.data.results;
@@ -92,7 +90,7 @@ class Map extends Component<MapProps, MapState> {
           style={{height: "80vh", width: "100%"}}
           zoom={13}
         >
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <TileLayer url={MAP_LINK} />
 
           {this.state.paramBankList.map(({fsq_id, geocodes, name, currency}) => (
             <Marker key={fsq_id} position={[geocodes.main.latitude, geocodes.main.longitude]}>
