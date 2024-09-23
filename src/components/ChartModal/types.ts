@@ -5,3 +5,10 @@ export type ChartModalProps = {
   handleClose: () => void;
   onSubmit: (updatedTrade: Trade) => void;
 };
+
+export type ChartModalState = {
+  open: number;
+  close: number;
+  high: number;
+  low: number;
+};

@@ -1,24 +1,10 @@
 import {Component} from "react";
-import styled from "styled-components";
 
 import CandlestickChart from "components/Chart/Chart";
 import DateForm from "components/DateForm/DateForm";
-import {LayoutContainer} from "components/Layout/Layout.styled";
 
-const ChartContainer = styled(LayoutContainer)`
-  background: ${({theme}) => theme.background};
-`;
-
-const Error = styled.p`
-  font-size: 24px;
-  color: red;
-`;
-
-interface ChartBlockState {
-  fromDate: string;
-  toDate: string;
-  error: string;
-}
+import {ChartContainer, Error} from "./ChartBlock.styled";
+import {ChartBlockState} from "./types";
 
 class ChartBlock extends Component<{}, ChartBlockState> {
   state = {

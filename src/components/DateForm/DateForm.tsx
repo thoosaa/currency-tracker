@@ -1,47 +1,7 @@
 import {ChangeEvent, Component, FormEvent} from "react";
-import styled from "styled-components";
 
-const Input = styled.input`
-  background: ${({theme}) => theme.background};
-  color: ${({theme}) => theme.color};
-  border: 1px solid ${({theme}) => theme.color};
-  border-radius: 5px;
-  padding: 5px;
-`;
-
-const Form = styled.form`
-  display: flex;
-  gap: 10px;
-  align-items: center;
-`;
-
-const Text = styled.p`
-  font-weight: 300;
-  font-size: 28px;
-  color: ${({theme}) => theme.financeBlockPercent};
-`;
-
-const Button = styled.button`
-  background: ${({theme}) => theme.financeBlockBgColor};
-  color: ${({theme}) => theme.financeBlockPercent};
-  border: 1px solid ${({theme}) => theme.background};
-  padding: 10px;
-  border-radius: 8px;
-
-  &:hover {
-    border: 1px solid ${({theme}) => theme.financeBlockPercent};
-  }
-`;
-
-interface DateFormState {
-  fromDate: string;
-  toDate: string;
-}
-
-interface DateFormProps {
-  handleChange: (fromDate: string, toDate: string) => void;
-  handleError: (error: string) => void;
-}
+import {Button, Form, Input, Text} from "./DateForm.styled";
+import {DateFormProps, DateFormState} from "./types";
 
 class DateForm extends Component<DateFormProps, DateFormState> {
   state = {
@@ -57,7 +17,6 @@ class DateForm extends Component<DateFormProps, DateFormState> {
 
   handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(this.state);
 
     if (
       new Date(this.state.fromDate).getTime() <= new Date(this.state.toDate).getTime() &&

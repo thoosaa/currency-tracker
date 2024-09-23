@@ -7,15 +7,10 @@ import ChartModal from "components/ChartModal/ChartModal";
 import {Observer} from "utils/Observer";
 
 import {options} from "./chartconfig";
-import {CandlestickChartState, Trade, TradeApi} from "./types";
+import {CandlestickChartProps, CandlestickChartState, Trade, TradeApi} from "./types";
 
 import "chartjs-chart-financial";
 import "chartjs-adapter-date-fns";
-
-type CandlestickChartProps = {
-  fromDate: string;
-  toDate: string;
-};
 
 class CandlestickChart extends Component<CandlestickChartProps, CandlestickChartState> {
   observer = new Observer();
@@ -26,6 +21,8 @@ class CandlestickChart extends Component<CandlestickChartProps, CandlestickChart
       history: [],
       currentTrade: undefined,
       isOpen: false,
+      isLoading: true,
+      error: false,
     };
   }
 
@@ -50,6 +47,7 @@ class CandlestickChart extends Component<CandlestickChartProps, CandlestickChart
 
   fetchData = async () => {
     try {
+      this.setState({isLoading: true});
       const response = await axios.get(
         "https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/history",
         {
@@ -74,10 +72,11 @@ class CandlestickChart extends Component<CandlestickChartProps, CandlestickChart
         }),
       );
 
-      console.log(tradeInfo);
       this.setState({history: tradeInfo});
-    } catch (error) {
-      console.error("Error fetching data:", error);
+    } catch {
+      this.setState({error: true});
+    } finally {
+      this.setState({isLoading: false});
     }
   };
 
@@ -98,9 +97,6 @@ class CandlestickChart extends Component<CandlestickChartProps, CandlestickChart
     if (points.length) {
       const firstPoint = points[0];
       const datasetIndex = firstPoint.index;
-
-      console.log(points);
-      console.log(this.state.history[datasetIndex]);
 
       this.setState({
         currentTrade: this.state.history[datasetIndex],
