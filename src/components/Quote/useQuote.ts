@@ -14,13 +14,22 @@ export function useQuotes() {
   const fetchQuotes = useCallback(async () => {
     let currencyRates: QuoteRateTime[] = [];
 
-    if (!localStorage.length) {
+    const currentTime = new Date().getTime();
+    const lastUpdated = localStorage.getItem("lastUpdated");
+
+    if (!lastUpdated || currentTime - new Date(lastUpdated).getTime() > 24 * 60 * 60 * 1000) {
+      localStorage.clear();
+      localStorage.setItem("lastUpdated", new Date(currentTime).toISOString());
+    }
+
+    if (localStorage.length <= 1) {
       try {
         const res = await axios.get(`${BASE_URL}/exchangerate/USD`, {
           headers: {"X-CoinAPI-Key": process.env.REACT_APP_API_KEY},
         });
 
         currencyRates = res.data.rates;
+        console.log(currencyRates);
 
         currencies.forEach(({name}: {name: string}) => {
           const rateInfo = currencyRates?.find(({asset_id_quote}) => asset_id_quote === name);
@@ -36,14 +45,18 @@ export function useQuotes() {
       }
     } else {
       Object.keys(localStorage).forEach((key: string) => {
-        return currencyRates.push({
-          asset_id_quote: key,
-          rate: parseFloat(localStorage.getItem(key) || "0"),
-        });
+        if (key !== "lastUpdated") {
+          return currencyRates.push({
+            asset_id_quote: key,
+            rate: parseFloat(localStorage.getItem(key) || "0"),
+          });
+        }
       });
 
       setIsLoading(false);
     }
+
+    console.log(currencies);
 
     const combinedData = currencies.map((currency) => {
       const {rate} =
