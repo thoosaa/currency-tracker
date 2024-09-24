@@ -2,14 +2,15 @@ import {Component} from "react";
 
 import CandlestickChart from "components/Chart/Chart";
 import DateForm from "components/DateForm/DateForm";
+import {getDate30daysAgo, getToday} from "utils/date";
 
 import {ChartContainer, Error} from "./ChartBlock.styled";
 import {ChartBlockState} from "./types";
 
 class ChartBlock extends Component<{}, ChartBlockState> {
   state = {
-    fromDate: new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
-    toDate: new Date().toISOString().slice(0, 10),
+    fromDate: getDate30daysAgo(),
+    toDate: getToday(),
     error: "",
   };
 

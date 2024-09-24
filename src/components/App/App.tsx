@@ -10,7 +10,6 @@ import {RootState} from "store/store";
 
 import "chartjs-adapter-date-fns";
 
-// Register the necessary components
 Chart.register(...registerables, CandlestickController, CandlestickElement);
 
 import "styles/globals.scss";

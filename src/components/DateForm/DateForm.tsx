@@ -1,5 +1,7 @@
 import {ChangeEvent, Component, FormEvent} from "react";
 
+import {getToday} from "utils/date";
+
 import {Button, Form, Input, Text} from "./DateForm.styled";
 import {DateFormProps, DateFormState} from "./types";
 
@@ -37,19 +39,9 @@ class DateForm extends Component<DateFormProps, DateFormState> {
     return (
       <Form onSubmit={this.handleSubmit}>
         <Text>From: </Text>
-        <Input
-          max={new Date().toISOString().slice(0, 10)}
-          name="fromDate"
-          type="date"
-          onChange={this.handleChange}
-        />
+        <Input max={getToday()} name="fromDate" type="date" onChange={this.handleChange} />
         <Text>To: </Text>
-        <Input
-          max={new Date().toISOString().slice(0, 10)}
-          name="toDate"
-          type="date"
-          onChange={this.handleChange}
-        />
+        <Input max={getToday()} name="toDate" type="date" onChange={this.handleChange} />
         <Button type="submit">OK</Button>
       </Form>
     );
