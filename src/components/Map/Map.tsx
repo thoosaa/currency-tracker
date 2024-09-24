@@ -36,7 +36,7 @@ class Map extends Component<MapProps, MapState> {
     try {
       const res = await axios.get("https://api.foursquare.com/v3/places/search", {
         headers: {Authorization: "fsq3diKK2zilL3ubXZU3OORI3zBxVU6G/sSCC8wvlNxaxw4="},
-        params: params,
+        params,
       });
 
       const bankList = res.data.results;
