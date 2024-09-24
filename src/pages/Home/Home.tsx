@@ -1,11 +1,10 @@
-import {CompanyInfo} from "components/CompanyInfo/CompanyInfo";
-import {Header} from "components/Header/Header";
+import {QuoteBlock} from "components/QuoteBlock/QuoteBlock";
+import {PageTemplate} from "pages/PageTemplate";
 
 export const Home = () => {
   return (
-    <>
-      <Header />
-      <CompanyInfo />
-    </>
+    <PageTemplate>
+      <QuoteBlock />
+    </PageTemplate>
   );
 };
