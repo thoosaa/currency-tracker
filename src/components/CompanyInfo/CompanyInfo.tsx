@@ -1,5 +1,6 @@
 import circle from "assets/images/circle.svg";
 import green_stocks_big from "assets/images/green-stocks-big.svg";
+import {getLastUpdate} from "utils/LS";
 
 import {
   Container,
@@ -26,7 +27,7 @@ export const CompanyInfo = () => {
 
       <LastUpdated>
         <img alt="circle" src={circle} />
-        Last Updated: {localStorage.getItem("lastUpdated")?.slice(11, 16)}
+        Last Updated: {getLastUpdate()}
       </LastUpdated>
     </Container>
   );
