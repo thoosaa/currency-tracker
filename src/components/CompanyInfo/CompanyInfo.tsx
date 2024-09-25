@@ -1,6 +1,15 @@
+import circle from "assets/images/circle.svg";
 import green_stocks_big from "assets/images/green-stocks-big.svg";
+import {getLastUpdate} from "utils/localStorage";
 
-import {Container, InfoSection, TextContainer, TextInfo, Title} from "./CompanyInfo.styled";
+import {
+  Container,
+  InfoSection,
+  LastUpdated,
+  TextContainer,
+  TextInfo,
+  Title,
+} from "./CompanyInfo.styled";
 
 export const CompanyInfo = () => {
   return (
@@ -15,6 +24,11 @@ export const CompanyInfo = () => {
 
         <img alt="green stocks" src={green_stocks_big} />
       </InfoSection>
+
+      <LastUpdated>
+        <img alt="circle" src={circle} />
+        Last Updated: {getLastUpdate()}
+      </LastUpdated>
     </Container>
   );
 };
