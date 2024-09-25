@@ -6,6 +6,8 @@ export const dark = {
   financeBlockTitle: "#d9d9d9",
   financeBlockPercent: "#a7b2c3",
   gradientColor: "#121212",
+  searchBg: "#1b2028",
+  inputColor: "#9e9e9e",
 };
 
 export const light = {
@@ -15,4 +17,6 @@ export const light = {
   financeBlockTitle: "#363636",
   financeBlockPercent: "#5a5f69",
   gradientColor: "#e3e1e1",
+  searchBg: "#e3e1e1",
+  inputColor: "#030304",
 };
