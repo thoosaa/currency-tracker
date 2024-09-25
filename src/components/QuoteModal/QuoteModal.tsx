@@ -1,73 +1,40 @@
-import styled from "styled-components";
+import {ChangeEvent, useState} from "react";
 
 import {currencies} from "constants/currencies";
+import {convert} from "utils/convert";
 
-const ModalContainer = styled.div`
-  width: 520px;
-  background-color: ${({theme}) => theme.financeBlockBgColor};
-  padding: 36.5px 32px;
-  border-radius: 8px;
-  color: ${({theme}) => theme.financeBlockTitle};
-  font-size: 35px;
-`;
+import {
+  ModalContainer,
+  ModalHeader,
+  Option,
+  Select,
+  Text,
+  TextBlock,
+  Title,
+} from "./QuoteModal.styled";
+import {QuoteModalProps} from "./types";
 
-const ModalHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 30px;
-`;
+export const QuoteModal = ({closeModal, currentQuote}: QuoteModalProps) => {
+  const [quote, setQuote] = useState<string>("USD");
 
-const Title = styled.p`
-  font-weight: 700;
-  font-size: 35px;
-  color: #2bdd50;
-`;
+  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => setQuote(event.target.value);
 
-const Select = styled.select`
-  font-weight: 300;
-  font-size: 32px;
-  color: ${({theme}) => theme.financeBlockTitle};
-  background-color: ${({theme}) => theme.financeBlockBgColor};
-  border: none;
-`;
-
-const Option = styled.option`
-  background-color: ${({theme}) => theme.financeBlockBgColor};
-`;
-
-const Text = styled.p`
-  font-weight: 300;
-  font-size: 32px;
-  color: ${({theme}) => theme.financeBlockPercent};
-`;
-
-const TextBlock = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-
-  &:not(:last-child) {
-    margin-bottom: 20px;
-  }
-`;
-
-export const QuoteModal = () => {
   return (
     <ModalContainer>
       <ModalHeader>
         <Title>Converter</Title>
-        <button>x</button>
+        <button onClick={closeModal}>x</button>
       </ModalHeader>
 
       <div>
         <TextBlock>
           <Text>From: </Text>
-          <Text>USD</Text>
+          <Text>{currentQuote}</Text>
         </TextBlock>
 
         <TextBlock>
           <Text>To: </Text>
-          <Select>
+          <Select onChange={handleChange}>
             {currencies.map(({name, fullName}) => (
               <Option key={fullName} value={name}>
                 {fullName}
@@ -78,7 +45,7 @@ export const QuoteModal = () => {
 
         <TextBlock>
           <Text>Result: </Text>
-          <Text>12</Text>
+          <Text>{convert(currentQuote, quote).toFixed(2)}</Text>
         </TextBlock>
       </div>
     </ModalContainer>

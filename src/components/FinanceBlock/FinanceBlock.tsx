@@ -9,7 +9,7 @@ import {FinanceBlockProps} from "./types";
 
 export const FinanceBlock = (stockInfo: FinanceBlockProps) => {
   return (
-    <FinanceBlockContainer>
+    <FinanceBlockContainer onClick={stockInfo.onClick}>
       <ImageWrapper style={{backgroundColor: stockInfo?.background}}>
         <img alt="currency" src={stockInfo.imageUrl} />
       </ImageWrapper>

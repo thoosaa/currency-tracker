@@ -1,3 +1,5 @@
+import {useState} from "react";
+
 import {FinanceBlock} from "components/FinanceBlock/FinanceBlock";
 import {QuoteModal} from "components/QuoteModal/QuoteModal";
 
@@ -6,6 +8,14 @@ import {useQuotes} from "./useQuote";
 
 export const Quote = () => {
   const {quotes, isLoading, error} = useQuotes();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [currentQuote, setCurrentQuote] = useState<string>("");
+
+  const closeModal = () => setIsOpen(false);
+  const openModal = (quoteName: string) => () => {
+    setIsOpen(true);
+    setCurrentQuote(quoteName);
+  };
 
   if (isLoading) {
     return <h1>Loading</h1>;
@@ -24,10 +34,11 @@ export const Quote = () => {
             imageUrl={icon}
             percentInfo={`R$ ${rate.toFixed(2)}`}
             title={fullName}
+            onClick={openModal(name)}
           />
         ))}
       </QuoteList>
-      <QuoteModal />
+      {isOpen && <QuoteModal closeModal={closeModal} currentQuote={currentQuote} />}
     </>
   );
 };
