@@ -1,9 +1,21 @@
-import {LayoutContainer} from "components/Layout/Layout.styled";
 import styled from "styled-components";
+
+import {LayoutContainer} from "components/Layout/Layout.styled";
 
 export const Container = styled.div`
   background-color: ${({theme}) => theme.background};
 `;
+
+export const LastUpdated = styled(LayoutContainer)`
+  font-size: 32.91px;
+  font-weight: 300;
+  color: ${({theme}) => theme.color};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+`;
+
 export const InfoSection = styled(LayoutContainer)`
   display: flex;
   background: #247940;

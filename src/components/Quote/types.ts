@@ -4,3 +4,9 @@ export interface Quote {
   icon: string;
   rate: number;
 }
+
+export interface QuoteRateTime {
+  asset_id_quote: string;
+  rate: number;
+  time?: string;
+}
