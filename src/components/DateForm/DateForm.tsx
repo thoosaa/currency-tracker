@@ -1,6 +1,6 @@
 import {ChangeEvent, Component, FormEvent} from "react";
 
-import {getToday} from "utils/date";
+import {getToday, validateDateRange} from "utils/date";
 
 import {Button, Form, Input, Text} from "./DateForm.styled";
 import {DateFormProps, DateFormState} from "./types";
@@ -20,12 +20,7 @@ class DateForm extends Component<DateFormProps, DateFormState> {
   handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (
-      new Date(this.state.fromDate).getTime() <= new Date(this.state.toDate).getTime() &&
-      (new Date(this.state.toDate).getTime() - new Date(this.state.fromDate).getTime()) /
-        (1000 * 3600 * 24) >=
-        10
-    ) {
+    if (validateDateRange(this.state.fromDate, this.state.toDate)) {
       this.props.handleChange(this.state.fromDate, this.state.toDate);
       this.props.handleError("");
     } else {
