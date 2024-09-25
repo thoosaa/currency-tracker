@@ -1,6 +1,6 @@
 export const menu = {
   Home: "/",
   Timeline: "/timeline",
-  Card: "#",
+  Card: "/card",
   Contact: "/contact",
 };
