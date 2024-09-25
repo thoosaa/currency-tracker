@@ -142,6 +142,7 @@ export default [
         "error",
         {
           groups: [
+            ["^\\u0000"],
             ["^\\w"],
             [
               "^assets/*",

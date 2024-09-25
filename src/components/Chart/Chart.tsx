@@ -1,3 +1,6 @@
+import "chartjs-chart-financial";
+import "chartjs-adapter-date-fns";
+
 import axios from "axios";
 import {Chart as ChartJS} from "chart.js";
 import React, {Component} from "react";
@@ -10,9 +13,6 @@ import {Observer} from "utils/Observer";
 
 import {options} from "./chartconfig";
 import {CandlestickChartProps, CandlestickChartState, Trade, TradeApi} from "./types";
-
-import "chartjs-chart-financial";
-import "chartjs-adapter-date-fns";
 
 class CandlestickChart extends Component<CandlestickChartProps, CandlestickChartState> {
   observer = new Observer();
