@@ -4,6 +4,8 @@ import React, {Component} from "react";
 import {Chart} from "react-chartjs-2";
 
 import ChartModal from "components/ChartModal/ChartModal";
+import InfoModal from "components/InfoModal/InfoModal";
+import {RATE_URL} from "constants/apiroutes";
 import {Observer} from "utils/Observer";
 
 import {options} from "./chartconfig";
@@ -21,6 +23,7 @@ class CandlestickChart extends Component<CandlestickChartProps, CandlestickChart
       history: [],
       currentTrade: undefined,
       isOpen: false,
+      isOpenNotify: false,
       isLoading: true,
       error: false,
     };
@@ -29,7 +32,7 @@ class CandlestickChart extends Component<CandlestickChartProps, CandlestickChart
   componentDidMount() {
     this.fetchData();
 
-    this.observer.subscribe(() => alert("Chart updated"));
+    this.observer.subscribe(() => this.setState({isOpenNotify: true}));
   }
 
   componentDidUpdate(
@@ -48,19 +51,16 @@ class CandlestickChart extends Component<CandlestickChartProps, CandlestickChart
   fetchData = async () => {
     try {
       this.setState({isLoading: true});
-      const response = await axios.get(
-        "https://rest.coinapi.io/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/history",
-        {
-          headers: {
-            "X-CoinAPI-Key": "E5CFB881-BDAD-42DD-9F82-39607D10D700",
-          },
-          params: {
-            period_id: "1DAY",
-            time_start: `${this.props.fromDate}T00:00:00`,
-            time_end: `${this.props.toDate}T00:00:00`,
-          },
+      const response = await axios.get(RATE_URL, {
+        headers: {
+          "X-CoinAPI-Key": process.env.REACT_APP_API_KEY,
         },
-      );
+        params: {
+          period_id: "1DAY",
+          time_start: `${this.props.fromDate}T00:00:00`,
+          time_end: `${this.props.toDate}T00:00:00`,
+        },
+      });
 
       const tradeInfo = response.data.map(
         ({time_period_start, price_high, price_low, price_open, price_close}: TradeApi) => ({
@@ -123,6 +123,10 @@ class CandlestickChart extends Component<CandlestickChartProps, CandlestickChart
     this.setState({isOpen: false});
   };
 
+  handleCloseNotify = () => {
+    this.setState({isOpenNotify: false});
+  };
+
   render() {
     const {history, currentTrade} = this.state;
 
@@ -147,6 +151,7 @@ class CandlestickChart extends Component<CandlestickChartProps, CandlestickChart
             onSubmit={this.handleSubmit}
           />
         )}
+        {this.state.isOpenNotify && <InfoModal handleClose={this.handleCloseNotify} />}
       </>
     );
   }

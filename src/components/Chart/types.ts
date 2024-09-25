@@ -19,6 +19,7 @@ export type CandlestickChartState = {
   currentTrade?: Trade;
   currentTradeIndex?: number;
   isOpen?: boolean;
+  isOpenNotify?: boolean;
   isLoading: boolean;
   error: boolean;
 };
