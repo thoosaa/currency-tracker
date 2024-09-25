@@ -3,7 +3,7 @@ import {useCallback, useEffect, useState} from "react";
 
 import {BASE_URL} from "constants/apiroutes";
 import {currencies} from "constants/currencies";
-import {updateLS} from "utils/LS";
+import {updateLS} from "utils/localStorage";
 
 import {Quote, QuoteRateTime} from "./types";
 

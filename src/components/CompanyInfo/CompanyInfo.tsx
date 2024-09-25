@@ -1,6 +1,6 @@
 import circle from "assets/images/circle.svg";
 import green_stocks_big from "assets/images/green-stocks-big.svg";
-import {getLastUpdate} from "utils/LS";
+import {getLastUpdate} from "utils/localStorage";
 
 import {
   Container,
