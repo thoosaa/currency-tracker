@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ModalContainer = styled.div`
   width: 520px;
   background-color: ${({theme}) => theme.financeBlockBgColor};
-  padding: 36.5px 32px;
+  padding: 36px 32px;
   border-radius: 8px;
   color: ${({theme}) => theme.financeBlockTitle};
   border: 1px solid ${({theme}) => theme.financeBlockTitle};

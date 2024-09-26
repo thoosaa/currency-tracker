@@ -7,16 +7,22 @@ import {
 } from "./FinanceBlock.styled";
 import {FinanceBlockProps} from "./types";
 
-export const FinanceBlock = (stockInfo: FinanceBlockProps) => {
+export const FinanceBlock = ({
+  background,
+  imageUrl,
+  title,
+  percentInfo,
+  onClick,
+}: FinanceBlockProps) => {
   return (
-    <FinanceBlockContainer onClick={stockInfo.onClick}>
-      <ImageWrapper style={{backgroundColor: stockInfo?.background}}>
-        <img alt="currency" src={stockInfo.imageUrl} />
+    <FinanceBlockContainer onClick={onClick}>
+      <ImageWrapper style={{backgroundColor: background}}>
+        <img alt="currency" src={imageUrl} />
       </ImageWrapper>
 
       <StockInfo>
-        <Title>{stockInfo.title}</Title>
-        <PercentInfo>{stockInfo.percentInfo}</PercentInfo>
+        <Title>{title}</Title>
+        <PercentInfo>{percentInfo}</PercentInfo>
       </StockInfo>
     </FinanceBlockContainer>
   );
