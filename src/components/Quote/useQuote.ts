@@ -3,7 +3,7 @@ import {useCallback, useEffect, useState} from "react";
 
 import {BASE_URL} from "constants/apiroutes";
 import {currencies} from "constants/currencies";
-import {updateLS} from "utils/localStorage";
+import {updateLocalStorage} from "utils/localStorage";
 
 import {Quote, QuoteRateTime} from "./types";
 
@@ -15,7 +15,7 @@ export function useQuotes() {
   const fetchQuotes = useCallback(async () => {
     let currencyRates: QuoteRateTime[] = [];
 
-    updateLS();
+    updateLocalStorage();
 
     if (localStorage.length <= 1) {
       try {

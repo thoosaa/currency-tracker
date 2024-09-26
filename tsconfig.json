@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "jsx": "react-jsx",
+    "types": ["jest", "node"],
     "target": "es6",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -13,7 +14,7 @@
     "paths": {
       "assets/*": ["./src/assets/*"],
       "components/*": ["./src/components/*"],
-      "constants/*": ["./src/constants/*"],
+      "constants/*": ["src/constants/*"],
       "pages/*": ["./src/pages/*"],
       "store/*": ["./src/store/*"],
       "styles/*": ["./src/styles/*"],

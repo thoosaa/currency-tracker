@@ -1,3 +1,5 @@
+import "chartjs-adapter-date-fns";
+
 import {Chart, registerables} from "chart.js";
 import {CandlestickController, CandlestickElement} from "chartjs-chart-financial";
 import {ErrorBoundary} from "react-error-boundary";
@@ -7,8 +9,6 @@ import {ThemeProvider} from "styled-components";
 import {AppRouting} from "components/AppRouting/AppRouting";
 import {Fallback} from "components/Fallback/Fallback";
 import {RootState} from "store/store";
-
-import "chartjs-adapter-date-fns";
 
 Chart.register(...registerables, CandlestickController, CandlestickElement);
 

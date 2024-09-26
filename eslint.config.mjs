@@ -27,7 +27,7 @@ export default [
     files: ["src/**/*.{ts,tsx,js,jsx,json,css,md}"],
   },
   {
-    ignores: ["node_modules/*", "dist/*"],
+    ignores: ["node_modules/*", "dist/*", "__tests__/*"],
   },
   ...fixupConfigRules(
     compat.extends(
