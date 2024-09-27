@@ -3,4 +3,5 @@ export interface FinanceBlockProps {
   title: string;
   percentInfo: string;
   background?: string;
+  onClick: () => void;
 }

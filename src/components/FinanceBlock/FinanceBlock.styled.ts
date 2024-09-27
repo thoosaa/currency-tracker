@@ -4,7 +4,7 @@ export const FinanceBlockContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 30px;
-  padding: 36.5px 32px;
+  padding: 36px 32px;
   background-color: ${({theme}) => theme.financeBlockBgColor};
   border-radius: 8px;
 `;
