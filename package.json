@@ -2,10 +2,11 @@
   "name": "currency-tracker",
   "version": "1.0.0",
   "main": "index.js",
-  "homepage": "https://thoosaa.github.io/currency-tracker",
+  "homepage": "https://https://thoosaa.github.io/currency-tracker/",
   "repository": "https://github.com/thoosaa/currency-tracker.git",
   "author": "Tatyana Sugako <tatyanasugako@gmail.com>",
   "license": "MIT",
+  "private": "false",
   "scripts": {
     "start": "webpack serve --open",
     "build": "webpack --mode production",

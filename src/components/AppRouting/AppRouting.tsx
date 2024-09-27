@@ -4,7 +4,7 @@ import {routes} from "constants/routes";
 
 export function AppRouting() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/currency-tracker/">
       <Routes>
         {routes.map(({path, component: Component}) => (
           <Route key={path} element={<Component />} path={path} />
