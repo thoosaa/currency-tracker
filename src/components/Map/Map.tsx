@@ -1,3 +1,5 @@
+import "leaflet/dist/leaflet.css";
+
 import axios from "axios";
 import L from "leaflet";
 import iconUrl from "leaflet/dist/images/marker-icon.png";
@@ -12,8 +14,6 @@ import {LATITUDE, LONGTITUDE, MAP_LINK} from "constants/map";
 
 import {params} from "./params";
 import {Bank, MapProps, MapState} from "./types";
-
-import "leaflet/dist/leaflet.css";
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: iconRetinaUrl,
